@@ -1,0 +1,51 @@
+
+Vagrant.configure("2") do |config|
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "512"  
+  end
+    config.vm.define :sql do |sql|
+        sql.vm.box = "ubuntu/xenial64"
+        sql.vm.hostname = "srv-sql"
+        sql.vm.network :forwarded_port, guest: 80, host: 6666
+        sql.vm.network "public_network", bridge: "en0: WLAN (AirPort)"       
+    end
+  config.vm.provision "shell", inline: <<-MYSHELL
+  apt-get update
+  sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password test'
+  sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password test'
+  sudo apt-get -y install mysql-server
+  MYSHELL
+end
+
+Vagrant.configure("2") do |ghostconfig|
+  ghostconfig.vm.provider "virtualbox" do |ghost|
+    ghost.memory = "512" 
+  end
+  ghostconfig.vm.define :ghost do |ghost|
+    ghost.vm.box = "ubuntu/xenial64"
+    ghost.vm.hostname = "srv-ghost"
+    ghost.vm.network :forwarded_port, guest: 80, host: 7890
+    ghost.vm.network "public_network", bridge: "en0: WLAN (AirPort)"
+  end
+  ghostconfig.vm.provision "shell", inline: <<-SHELL
+     apt-get update
+     adduser ghost
+     usermod -aG sudo ghost
+     su ghost
+     apt-get install nginx -y
+     ufw allow 'Nginx Full'
+     apt-get install curl -y
+     curl -sL https://deb.nodesource.com/setup_11.x -o nodesource_setup.sh
+     sudo apt-get install nodejs
+     apt-get install npm -y
+     npm install ghost-cli@latest -g
+     mkdir -p /var/www/ghost
+     chown ghost:ghost /var/www/ghost
+     chmod 775 /var/www/ghost
+     cd /var/www/ghost
+     ghost install --no-prompt
+    SHELL
+  end
+
+
