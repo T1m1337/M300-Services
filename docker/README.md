@@ -36,7 +36,7 @@ Hier ist der Code:
 # Service starten
 
 ## Container erstellen
-Um die Container zu starten, muss nur in meinem Repository dieser Befehl ausgeführt werden:
+Um die Container zu starten, muss nur im docker-Verzeichnis von meinem Repository dieser Befehl ausgeführt werden:
 ```
 vagrant up
 ```
@@ -60,7 +60,7 @@ Nach dem Login kann man sehen, dass die in der Konfiguration angegebene Datenban
 
 | **Soll**                                      | **Ist**                                         | **Test** |
 |:----------------------------------------------|:------------------------------------------------|:---------|       
-Die Container werden per vagrant up installiert | Container wurden erstellt                       | Befehl vagrant up im root-Verzeichnis meines Repository ausgeführt
+Die Container werden per vagrant up installiert | Container wurden erstellt                       | Befehl vagrant up im docker-Verzeichnis meines Repository ausgeführt
 Ports werden so geforwardet, dass auf dem Hostsystem auf Port 8080 auf phpmyadmin zugreifen kann. | Es kann auf Port 8080 auf phpmyadmin zugegriffen werden | Aufruf von http://127.0.0.1:8080 im Browser
 Login ist mit dem erstellten User möglich | Login ist möglich | Der Login unter http://127.0.0.1:8080 mit den Anmeldedaten testen
 
