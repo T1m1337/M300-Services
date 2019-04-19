@@ -12,3 +12,10 @@ Docker ist eine Virtualisierungsplattform, die benutzt werden kann um Services a
 Ich möchte als Service phpmyadmin realisieren. Da phpmyadmin benutzt wird, um Datenbanken zu administrieren, ist es mein Ziel auch noch gleich eine MySQL-Datenbank einzubinden. Da Docker bei mir in einer VM gestartet wird, muss ich zusätzlich noch einige Ports forwarden, um das GUI von phpmyadmin auf meinem eigenen Rechner zu benutzen. 
 
 So sieht das GUI von phpmyadmin aus, welches ich dann von meinem Host aus verwenden will:
+![phpmyadmin](https://github.com/T1m1337/M300-Services/raw/master/docker/Images/phpmyadmin.png)
+
+# Benutzte Images
+
+Datenbank: mysql:5.7
+PHPMyAdmin: phpmyadmin:latest
+
