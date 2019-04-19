@@ -1,0 +1,35 @@
+version '3.7'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - dockernetwork
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'test1234'
+      MYSQL_DATABAE: testdatabase
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpw
+
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    networks:
+      - dockernetwork
+    ports:
+      - "80:80" #Port forward auf Port 80 der VM
+    restart: always
+    environment:
+      PMA_HOST: mysql
+
+volumes:
+  sqldata: {}
+
+networks:
+  dockernetwork:
