@@ -40,9 +40,33 @@ Um die Container zu starten, muss nur in meinem Repository dieser Befehl ausgef�
 ```
 vagrant up
 ```
+Dieser Befehl startet eine VM, forwardet die korrekten Ports, installiert auf dieser VM docker und docker-compose und startet die Container. Wie dies gemacht wird, kann im [Vagrantfile](https://github.com/T1m1337/M300-Services/blob/master/docker/Vagrantfile) eingesehen werden. 
 
 ## Zugriff
 Nun kann auf dem Hostsystem im Browser diese Adresse eingetippt werden: http://127.0.0.1:8080
 
 Danach sollte dieses Fenster erscheinen:
 ![loginpage](https://github.com/T1m1337/M300-Services/raw/master/docker/Images/phpmyadminlogin.png)
+
+### Login
+Nun kann man sich mit diese Login-Daten einloggen:
+- Username: testuser
+- Password: testpw
+
+Nach dem Login kann man sehen, dass die in der Konfiguration angegebene Datenbank erstellt wurde:
+![database](https://github.com/T1m1337/M300-Services/raw/master/docker/Images/database.png)
+
+# Testing
+
+| **Soll**                                      | **Ist**                                         | **Test** |
+|:----------------------------------------------|:------------------------------------------------|:---------|       
+Die Container werden per vagrant up installiert | Container wurden erstellt                       | Befehl vagrant up im root-Verzeichnis meines Repository ausgeführt
+Ports werden so geforwardet, dass auf dem Hostsystem auf Port 8080 auf phpmyadmin zugreifen kann. | Es kann auf Port 8080 auf phpmyadmin zugegriffen werden | Aufruf von http://127.0.0.1:8080 im Browser
+Login ist mit dem erstellten User möglich | Login ist möglich | Der Login unter http://127.0.0.1:8080 mit den Anmeldedaten testen
+
+# Quellenverzeichnis
+[Docker Hub](https://hub.docker.com)
+
+[Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+
+[Repo von Marco Berger](https://github.com/mc-b/M300)
