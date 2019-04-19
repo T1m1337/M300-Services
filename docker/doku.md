@@ -17,5 +17,13 @@ So sieht das GUI von phpmyadmin aus, welches ich dann von meinem Host aus verwen
 # Benutzte Images
 
 Datenbank: mysql:5.7
-PHPMyAdmin: phpmyadmin:latest
+PHPMyAdmin: phpmyadmin/phpmyadmin:latest
+
+Damit die zwei Container miteinander Kommunizieren können, wird im Code dann noch ein Netzwerk erstellt.
+
+# Netzwerkplan
+
+![Netzwerkplan](https://github.com/T1m1337/M300-Services/raw/master/docker/Images/Netzwerk.png)
+
+Im Netzwerkplan ist zu sehen, dass die zwei VM's über das Netzwerk mit dem Namen "dockernetwork" über den Port 3306 miteinander kommunizieren. Der Container mit dem Namen phpmyadmin veröffentlicht seinen Port 80 per Portforwarding zur VM auf welcher er läuft. Diese VM exposed den Port 80 wiederum auf Port 8080 des Host-Systems auf welchem die Startseite von PHPMyAdmin schlussendlich aufgerufen werden kann.
 
