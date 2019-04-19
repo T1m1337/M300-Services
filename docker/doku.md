@@ -32,3 +32,10 @@ Ich habe für dieses Projekt ein yaml-File verwendet. Ein yaml-File eigente sich
 
 Hier ist der Code:
 ![code](https://github.com/T1m1337/M300-Services/raw/master/docker/Images/code.png)
+
+# Service starten
+
+Um die Container zu starten, muss nur in meinem Repository dieser Befehl ausgeführt werden:
+```
+vagrant up
+```
