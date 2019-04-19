@@ -1,35 +1,35 @@
-version: '2.0'
+version: '2.0' 
 
-services:
-  mysql:
-    image: mysql:5.7
-    container_name: mysql
+services: # Anfang der Services
+  mysql:  # Erster Service
+    image: mysql:5.7  # Docker Image und Version
+    container_name: mysql # Name des Containers
     volumes:
-      - db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql  # Verwendetes Volume wird angegeben
     networks:
-      - dockernetwork
-    restart: always
+      - dockernetwork # Verwendetes Netzwerk wird angegeben
+    restart: always # Der Container wird nach der Erstellung neu gestartet
     environment:
-      MYSQL_ROOT_PASSWORD: 'test1234'
-      MYSQL_DATABAE: testdatabase
-      MYSQL_USER: testuser
-      MYSQL_PASSWORD: testpw
+      MYSQL_ROOT_PASSWORD: 'test1234' # mysql-Rootpassword ändern
+      MYSQL_DATABASE: testdatabase # Test-DB erstellen
+      MYSQL_USER: testuser  # Test-SQL-User erstellen
+      MYSQL_PASSWORD: testpw  # User ein Passwort geben
 
   phpmyadmin:
     depends_on:
-      - mysql
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
+      - mysql # Dieser Container ist abhängig vom Container mysql
+    image: phpmyadmin/phpmyadmin # Docker Image, Version ist latest
+    container_name: phpmyadmin  # Name des Containers
     networks:
-      - dockernetwork
+      - dockernetwork # Verwendetes Netzwerk wird angegeben
     ports:
       - "80:80" #Port forward auf Port 80 der VM
-    restart: always
+    restart: always # Der Container wird nach der Erstellung neu gestartet
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: mysql # verlinkung zu Db-Container angeben
 
 volumes:
-  db_data: {}
+  db_data: {} # Neues Volume erstellen
 
 networks:
-  dockernetwork:
+  dockernetwork:  # Neues Netzwerk erstellen

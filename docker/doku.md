@@ -27,3 +27,8 @@ Damit die zwei Container miteinander Kommunizieren können, wird im Code dann no
 
 Im Netzwerkplan ist zu sehen, dass die zwei VM's über das Netzwerk mit dem Namen "dockernetwork" über den Port 3306 miteinander kommunizieren. Der Container mit dem Namen phpmyadmin veröffentlicht seinen Port 80 per Portforwarding zur VM auf welcher er läuft. Diese VM exposed den Port 80 wiederum auf Port 8080 des Host-Systems auf welchem die Startseite von PHPMyAdmin schlussendlich aufgerufen werden kann.
 
+# .yml-File
+Ich habe für dieses Projekt ein yaml-File verwendet. Ein yaml-File eigente sich perfekt, um bereits vorhandene Images zu deployen und dabei letzte konfigurationen zu machen.
+
+Hier ist der Code:
+![code](https://github.com/T1m1337/M300-Services/raw/master/docker/Images/code.png)
