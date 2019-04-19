@@ -35,7 +35,14 @@ Hier ist der Code:
 
 # Service starten
 
+## Container erstellen
 Um die Container zu starten, muss nur in meinem Repository dieser Befehl ausgeführt werden:
 ```
 vagrant up
 ```
+
+## Zugriff
+Nun kann auf dem Hostsystem im Browser diese Adresse eingetippt werden: http://127.0.0.1:8080
+
+Danach sollte dieses Fenster erscheinen:
+![loginpage](https://github.com/T1m1337/M300-Services/raw/master/docker/Images/phpmyadminlogin.png)
